@@ -1,0 +1,203 @@
+﻿<Window x:Class="Polyclinic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Polyclinic"
+        mc:Ignorable="d"
+        Title="Polyclinic" Height="500" Width="800">
+    <Grid>
+        <TabControl x:Name="TabControl_All">
+            <TabItem x:Name="TabItem_Menu" Visibility="Hidden">
+                <Grid>
+                    <Image Source="/врач.jpg" Margin="-55,-75,200,-126"/>
+
+                    <Button x:Name="Button_Note" Content="Запись пациента" Height="40" Width="150" Margin="450,50,100,0" VerticalAlignment="Top" Background="#FFDBDEF2" Click="Button_Note_Click" FontWeight="Bold"/>
+                    <Button x:Name="Button_Doctors" Content="Доктора" Height="40" Width="150" Margin="450,100,100,0" VerticalAlignment="Top" Background="#FFDBDEF2" Click="Button_Doctors_Click" FontWeight="Bold"/>
+                    <Button x:Name="Button_Patients" Content="Пациенты" Height="40" Width="150" Margin="450,150,100,0" VerticalAlignment="Top" Background="#FFDBDEF2" Click="Button_Patients_Click" FontWeight="Bold"/>
+                    <Button x:Name="Button_Reception" Content="Прием" Height="40" Width="150" Margin="450,200,100,0" VerticalAlignment="Top" Background="#FFDBDEF2" Click="Button_Reception_Click" FontWeight="Bold"/>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem x:Name="TabItem_Note" Visibility="Hidden">
+                <Grid>
+                    <Label Content="Пациент:" Margin="0,50,0,0" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="ComboBox_Patient" Margin="0,0,0,275" HorizontalAlignment="Center" Height="25" Width="250"/>
+                    <Label Content="Врач:" Margin="0,120,0,0" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="ComboBox_Doctor" Margin="0,0,0,135" HorizontalAlignment="Center" Height="25" Width="250"/>
+                    <Label Content="Дата записи:" Margin="0,200,0,0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox_Date" Margin="0,15,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Content="Время записи:" Margin="0,250,0,0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox_Time" Margin="0,115,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Content="Обследование:" Margin="0,300,0,0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox_Checkup" Margin="0,215,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    
+                    <Button x:Name="Button_AddNote" Height="25" Width="150" Margin="0,0,10,20" Content="Добавить запись" Click="Button_AddNote_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFABE3E4"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="TabItem_Doctors" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_Doctors"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseDoctors" Height="25" Width="50" Content="назад" Click="Button_CloseDoctors_Click" HorizontalAlignment="Right"/>
+                    <Button Grid.Row="1" x:Name="Button_Schedule" Height="25" Width="200" Content="Индивидуальное расписание" Click="Button_Schedule_Click" HorizontalAlignment="Left"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_Schedule" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_Schedule"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseSchedule" Height="25" Width="50" Content="назад" Click="Button_CloseSchedule_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="TabItem_Patients" Visibility="Hidden">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Выбор пациента:" Margin="20,0,0,10" VerticalAlignment="Bottom"/>
+                    <ComboBox Grid.Row="1" Grid.Column="0" x:Name="ComboBox_SelectionPatient" Margin="20,0,0,10"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="250"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Справочная информация:" Margin="20,0,0,10" VerticalAlignment="Center"/>
+                    <Button Grid.Row="1" Grid.Column="1" x:Name="Button_PatientInfo" Content="Информация о пациенте" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_PatientInfo_Click"/>
+
+                    <Button Grid.Row="3" Grid.Column="0" x:Name="Button_MedCard" Content="Все записи в медкарте пациента" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_MedCard_Click"/>
+                    <Button Grid.Row="4" Grid.Column="0" x:Name="Button_Medicaments" Content="Список прописанных медикаментов" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Medicaments_Click"/>
+                    <Button Grid.Row="5" Grid.Column="0" x:Name="Button_Procedures" Content="Список процедур" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Procedures_Click"/>
+
+                    <Button Grid.Row="3" Grid.Column="1" x:Name="Button_Diagnoses" Content="История заболеваний пациента" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Diagnoses_Click"/>
+                    <Button Grid.Row="4" Grid.Column="1" x:Name="Button_Statistics" Content="Статистика заболеваемости пациента" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Statistics_Click"/>
+                    <Button Grid.Row="5" Grid.Column="1" x:Name="Button_StatisticsAll" Content="Статистика заболеваемости по всем пациентам" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_StatisticsAll_Click"/>
+
+                    <Button Grid.Row="8" Grid.Column="0" x:Name="Button_AddPatient" Content="Добавить пациента" Margin="20,0,10,20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_AddPatient_Click" Background="#FFABE3E4"/>
+                    <Button Grid.Row="8" Grid.Column="1" x:Name="Button_ClosePatients" Content="назад" Margin="0,0,10,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_ClosePatients_Click" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_AddPatient" Visibility="Hidden">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Имя:" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="0" x:Name="TextBox_Name" HorizontalAlignment="Center" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Фамилия:" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="0" x:Name="TextBox_Surename" HorizontalAlignment="Center" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Отчество:" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="0" x:Name="TextBox_Patronymic" HorizontalAlignment="Center" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Адрес:" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="5" Grid.Column="0" x:Name="TextBox_Address" HorizontalAlignment="Center" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+
+                    <Label Grid.Row="2" Grid.Column="1" Content="Телефон:" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBox_Phone" HorizontalAlignment="Center" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Grid.Row="3" Grid.Column="1" Content="Дата рождения:" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="TextBox_BirthDate" HorizontalAlignment="Center" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+                    <Label Grid.Row="4" Grid.Column="1" Content="Номер страхового полиса:" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="TextBox_Policy" HorizontalAlignment="Center" Margin="100,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="164"/>
+
+                    <Button Grid.Row="6" Grid.Column="1" Name="Button_AddPatientInBD" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="164" Height="20" Content="Добавить" Click="Button_AddPatientInBD_Click" Background="#FFABE3E4"/>
+                    <Button Grid.Row="8" Grid.Column="1" x:Name="Button_CloseAddPatient" Height="25" Width="50" Margin="0,0,10,0" Content="назад" Click="Button_CloseAddPatient_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_PatientInfo" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_PatientInfo"/>
+                    <Button Grid.Row="1" x:Name="Button_ClosePatientInfo" Height="25" Width="50" Content="назад" Click="Button_ClosePatientInfo_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_MedCard" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_MedCard"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseMedCard" Height="25" Width="50" Content="назад" Click="Button_CloseMedCard_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_Medicaments" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_Medicaments"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseMedicaments" Height="25" Width="50" Content="назад" Click="Button_CloseMedicaments_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_Procedures" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_Procedures"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseProcedures" Height="25" Width="50" Content="назад" Click="Button_CloseProcedures_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_Diagnoses" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_Diagnoses"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseDiagnoses" Height="25" Width="50" Content="назад" Click="Button_CloseDiagnoses_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_Statistics" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_Statistics"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseStatistics" Height="25" Width="50" Content="назад" Click="Button_CloseStatistics_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_StatisticsAll" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" x:Name="DataGrid_StatisticsAll"/>
+                    <Button Grid.Row="1" x:Name="Button_CloseStatisticsAll" Height="25" Width="50" Content="назад" Click="Button_CloseStatisticsAll_Click" HorizontalAlignment="Right" Background="#FFABE4BE"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
